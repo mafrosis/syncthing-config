@@ -1,0 +1,31 @@
+---
+volumes:
+  syncthing-data: {}
+
+networks:
+  caddy:
+    external: true
+
+services:
+  syncthing:
+    image: syncthing/syncthing:${SYNCTHING_VERSION}
+    restart: unless-stopped
+    ports:
+      - 8384:8384 # Web UI
+      - 22000:22000/tcp # TCP file transfers
+      - 22000:22000/udp # QUIC file transfers
+      - 21027:21027/udp # Receive local discovery broadcasts
+    networks:
+      - default
+      - caddy
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - syncthing-data:/var/syncthing
+      - /home/mafro/syncthing:/storage
+    labels:
+      caddy: syncthing.mafro.net
+      caddy.tls.ca: https://ca.mafro.net:4433/acme/acme/directory
+      caddy.tls.ca_root: /root/step_ca.crt
+      caddy.reverse_proxy: "{{upstreams 8384}}"

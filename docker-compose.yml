@@ -24,6 +24,7 @@ services:
     volumes:
       - syncthing-data:/var/syncthing
       - /home/mafro/syncthing:/storage
+      - /home/mafro/music:/music
       - /home/mafro/.step/certs/root_ca.crt:/storage/certs/step_ca.crt:ro
     labels:
       caddy: syncthing.mafro.net

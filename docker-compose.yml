@@ -1,6 +1,8 @@
 ---
 volumes:
-  syncthing-data: {}
+  syncthing-data:
+    labels:
+      net.mafro.kopia: true
 
 networks:
   caddy:

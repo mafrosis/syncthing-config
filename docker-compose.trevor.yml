@@ -1,0 +1,6 @@
+---
+services:
+  syncthing:
+    volumes:
+      - /home/mafro/syncthing:/storage
+      - /home/mafro/music:/music

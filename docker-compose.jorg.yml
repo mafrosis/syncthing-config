@@ -1,0 +1,9 @@
+---
+services:
+  syncthing:
+    volumes:
+      - /media/zpool/backup/syncthing:/storage
+      - /media/zpool/photos/kids:/mads
+      - /media/zpool/music/mp3:/music
+      - /media/zpool/music/opus:/opus
+      - /media/zpool/tv/gina:/ginatv
